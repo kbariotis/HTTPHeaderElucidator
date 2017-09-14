@@ -1,12 +1,19 @@
 {
   "name": "frontend",
   "private": "true",
-  "dependencies": {},
+  "dependencies": {
+    "gatsby-cli": "^1.1.6",
+    "gatsby-plugin-less": "^1.0.5"
+  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "theme": {
+    "primary-color": "#ff6600",
+    "link-color": "#ff6600"
   },
   "devDependencies": {
     "antd": "^2.13.1",

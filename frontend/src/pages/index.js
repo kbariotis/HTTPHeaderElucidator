@@ -1,16 +1,14 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import { Card, Row, Col } from 'antd';
-import { Form, Icon, Input, Button } from 'antd';
 import { Spin } from 'antd';
 
-const FormItem = Form.Item;
+import Form from './../components/form';
 
 export default class IndexPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.submit = this.submit.bind(this);
     this.state = {
       showResponse: false,
       loading: false,
@@ -31,11 +29,9 @@ export default class IndexPage extends React.Component {
         message: 'The response is gziped',
       }
     ]
-
   }
-  submit(e) {
-    e.preventDefault();
 
+  onSuccess () {
     this.setState({
       loading: true,
       response: [],
@@ -50,12 +46,7 @@ export default class IndexPage extends React.Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.submit} style={{paddingTop: '20px'}}>
-          <FormItem extra="This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.">
-            <Input style={{ width: '65%', marginRight: '3%' }} type="url" name="url" id="url" placeholder="Your asset URL" />
-            <Button style={{ width: '32%' }} type="primary" htmlType="submit">Enlighten me</Button>
-          </FormItem>
-        </Form>
+        <Form onSuccess={() => this.onSuccess()}/>
         {this.state.loading && (
           <div style={{ 'textAlign': 'center', paddingTop: '50px', paddingBottom: '50px' }}>
             <Spin />
