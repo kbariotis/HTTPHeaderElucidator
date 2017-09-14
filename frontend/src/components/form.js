@@ -1,39 +1,44 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button } from 'antd'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
+  return Object.keys(fieldsError).some(field => fieldsError[field])
 }
 
 class FormComponent extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.submit = this.submit.bind(this);
-    this.validUrlRegex = '^(\/[\w,\.]+)+\.\w+(\?(\w+=[\w\d]+(&\w+=[\w\d]+)+)+)*$';
+    this.submit = this.submit.bind(this)
+    this.validUrlRegex = '^(/[w,.]+)+.w+(?(w+=[wd]+(&w+=[wd]+)+)+)*$'
   }
   componentDidMount() {
     // To disabled submit button at the beginning.
-    this.props.form.validateFields();
+    this.props.form.validateFields()
   }
   submit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        this.props.onSuccess();
+        console.log('Received values of form: ', values)
+        this.props.onSuccess()
       }
-    });
+    })
   }
 
   render() {
-    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+    const {
+      getFieldDecorator,
+      getFieldsError,
+      getFieldError,
+      isFieldTouched,
+    } = this.props.form
 
-    const urlError = isFieldTouched('url') && getFieldError('url');
+    const urlError = isFieldTouched('url') && getFieldError('url')
 
     return (
       <Form onSubmit={this.submit} style={{ paddingTop: '20px' }}>
@@ -45,17 +50,26 @@ class FormComponent extends React.Component {
           {getFieldDecorator('url', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input style={{ width: '65%', marginRight: '3%' }} type="url" name="url" id="url" placeholder="Your asset URL" />
-            )}
+            <Input
+              style={{ width: '65%', marginRight: '3%' }}
+              type="url"
+              name="url"
+              id="url"
+              placeholder="Your asset URL"
+            />
+          )}
           <Button
             disabled={hasErrors(getFieldsError())}
             style={{ width: '32%' }}
             type="primary"
-            htmlType="submit">Enlighten me</Button>
+            htmlType="submit"
+          >
+            Enlighten me
+          </Button>
         </FormItem>
       </Form>
     )
   }
 }
 
-export default Form.create()(FormComponent);
+export default Form.create()(FormComponent)

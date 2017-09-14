@@ -1,19 +1,19 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import { Card, Row, Col } from 'antd';
-import { Spin } from 'antd';
+import { Card, Row, Col } from 'antd'
+import { Spin } from 'antd'
 
-import Form from './../components/form';
+import Form from './../components/form'
 
 export default class IndexPage extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       showResponse: false,
       loading: false,
       response: [],
-    };
+    }
 
     this.response = [
       {
@@ -27,35 +27,47 @@ export default class IndexPage extends React.Component {
         code: 'CONTENT_IS_ENCODED',
         metadata: { method: 'gzip' },
         message: 'The response is gziped',
-      }
+      },
     ]
   }
 
-  onSuccess () {
+  onSuccess() {
     this.setState({
       loading: true,
       response: [],
-    });
+    })
 
-    setTimeout(() => this.setState({
-      loading: false,
-      response: this.response,
-    }), 1000);
+    setTimeout(
+      () =>
+        this.setState({
+          loading: false,
+          response: this.response,
+        }),
+      1000
+    )
   }
 
   render() {
     return (
       <div>
-        <Form onSuccess={() => this.onSuccess()}/>
+        <Form onSuccess={() => this.onSuccess()} />
         {this.state.loading && (
-          <div style={{ 'textAlign': 'center', paddingTop: '50px', paddingBottom: '50px' }}>
+          <div
+            style={{
+              textAlign: 'center',
+              paddingTop: '50px',
+              paddingBottom: '50px',
+            }}
+          >
             <Spin />
           </div>
         )}
         {!!this.state.response.length && (
           <div>
             {this.response.map((item, index) => (
-              <Card key={index} title={item.header}>{item.message}</Card>
+              <Card key={index} title={item.header}>
+                {item.message}
+              </Card>
             ))}
           </div>
         )}
