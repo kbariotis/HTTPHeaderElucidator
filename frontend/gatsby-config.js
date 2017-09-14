@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '/HTTPHeaderElucidator',
   siteMetadata: {
     title: `Gatsby Default Starter`,
   },
