@@ -6,8 +6,6 @@ import { Spin } from 'antd';
 
 const FormItem = Form.Item;
 
-import '../scss/boot.scss';
-
 export default class IndexPage extends React.Component {
   constructor(props) {
     super(props);
