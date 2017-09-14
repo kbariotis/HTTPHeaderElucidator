@@ -1,33 +1,21 @@
 import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Icon, Menu, Card, Row, Col } from 'antd';
+import Link from 'gatsby-link'
 
-export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  render() {
-    return (
-      <Nav className="ml-auto" className="main-nav">
-        <NavItem right>
-          <NavLink href="/">Elucidator</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/About">About</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="https://github.com/kbariotis/HTTPHeaderElucidator">Github</NavLink>
-        </NavItem>
-      </Nav>
-    );
-  }
-}
+const Header = () =>
+  <Menu mode="horizontal" style={{'textAlign': 'center'}}>
+    <Menu.Item key="mail">
+      <Link to="/">Elucidator</Link>
+    </Menu.Item>
+    <Menu.Item key="app">
+      <Link to="/about">About</Link>
+    </Menu.Item>
+    <Menu.Item key="github">
+      <a href="https://ant.design" target="_blank" rel="noopener noreferrer"><Icon type="github" /></a>
+    </Menu.Item>
+  </Menu>
+
+export default Header;
